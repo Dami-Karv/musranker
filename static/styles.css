@@ -1,27 +1,89 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --primary-color: #1DB954;
+    --secondary-color: #191414;
+    --tertiary-color: #535353;
+}
+
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --secondary-color: #282828;
+    --tertiary-color: #404040;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121212;
-    color: #ffffff;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 header {
-    background-color: #1DB954;
+    background-color: var(--primary-color);
     padding: 1rem;
     text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #ffffff;
 }
 
 main {
     display: flex;
     flex: 1;
-    overflow: hidden;
+    padding: 2rem;
+}
+
+.intro-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.intro-page h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.intro-page p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #1ED760;
 }
 
 .left-column, .middle-column, .right-column {
@@ -33,17 +95,17 @@ main {
 
 .left-column {
     flex: 1;
-    background-color: #181818;
+    background-color: var(--secondary-color);
 }
 
 .middle-column {
     flex: 1;
-    background-color: #282828;
+    background-color: var(--tertiary-color);
 }
 
 .right-column {
-    flex: 1;
-    background-color: #181818;
+    flex: 2;
+    background-color: var(--secondary-color);
 }
 
 .search-container {
@@ -56,29 +118,29 @@ main {
     padding: 0.5rem;
     font-size: 1rem;
     border: none;
-    background-color: #404040;
-    color: #ffffff;
+    background-color: var(--tertiary-color);
+    color: var(--text-color);
 }
 
 #search-button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    background-color: #1DB954;
+    background-color: var(--primary-color);
     color: #ffffff;
     border: none;
     cursor: pointer;
 }
 
-.results-container, .temp-space, .tier-list-container {
+.results-container, .temp-space {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
 .item-card {
-    width: 150px;
-    height: 150px;
-    background-color: #282828;
+    width: 100px;
+    height: 100px;
+    background-color: var(--tertiary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -104,34 +166,55 @@ main {
     display: none;
 }
 
-.tier {
+.tier-list-container {
     display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    min-height: 170px;
-    background-color: #282828;
+    flex-direction: column;
 }
 
-.tier::before {
-    content: attr(data-tier);
+.tier {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 1rem;
+    background-color: var(--tertiary-color);
+}
+
+.tier span {
     font-size: 2rem;
     font-weight: bold;
     width: 50px;
     text-align: center;
-    color: #1DB954;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tier-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    flex-grow: 1;
+    min-height: 100px;
 }
 
 .controls {
     padding: 1rem;
-    background-color: #282828;
+    background-color: var(--tertiary-color);
     display: flex;
     justify-content: center;
+    gap: 1rem;
 }
 
-.controls label {
+.controls label, .controls button {
     display: flex;
     align-items: center;
     cursor: pointer;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
 }
 
 .controls input[type="checkbox"] {

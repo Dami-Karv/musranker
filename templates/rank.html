@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} - MusicRanker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -22,18 +22,39 @@
             </div>
             <div class="middle-column">
                 <h2>Temporary Space</h2>
-                <div id="temp-space" class="temp-space"></div>
+                <div id="temp-space" class="temp-space" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </div>
             <div class="right-column">
                 <h2>Tier List</h2>
                 <div id="tier-list" class="tier-list-container">
-                    <div class="tier" data-tier="S">S</div>
-                    <div class="tier" data-tier="A">A</div>
-                    <div class="tier" data-tier="B">B</div>
-                    <div class="tier" data-tier="C">C</div>
-                    <div class="tier" data-tier="D">D</div>
-                    <div class="tier" data-tier="E">E</div>
-                    <div class="tier" data-tier="F">F</div>
+                    <div class="tier" data-tier="S">
+                        <span>S</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="A">
+                        <span>A</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="B">
+                        <span>B</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="C">
+                        <span>C</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="D">
+                        <span>D</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="E">
+                        <span>E</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
+                    <div class="tier" data-tier="F">
+                        <span>F</span>
+                        <div class="tier-content" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -41,6 +62,8 @@
             <label for="show-names">
                 <input type="checkbox" id="show-names"> Show Names
             </label>
+            <button id="save-png">Save Tier List as PNG</button>
+            <button id="dark-mode-toggle">Toggle Dark Mode</button>
         </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
