@@ -1,3 +1,31 @@
-venv/
+### Python / virtualenv
 __pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+venv/
+.venv/
+env/
+.env/
+
+tests/
+
+### Flask
+instance/
+
+### Tests / tooling
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+### Environment
 .env
+
+### Editor / OS
+.DS_Store
+Thumbs.db
+
+### Artifacts
+*.zip

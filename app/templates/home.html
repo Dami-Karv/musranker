@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>MusicRanker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='redesign.css') }}"/>
+    <script>
+        window.MUSRANKER_CONFIG = {
+            initialScreen: "landing",
+            initialMode: "artists"
+        };
+    </script>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='catalog.js') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='ranker-core.jsx') }}"></script>
+    <script type="text/babel" src="{{ url_for('static', filename='variant-chrome.jsx') }}"></script>
+</head>
+<body data-search-type="artist">
+<div id="root"></div>
+<div style="display:none">Rank Artists Rank Albums</div>
+<script type="text/babel">
+    ReactDOM.createRoot(document.getElementById('root')).render(<ChromePlatinum/>);
+</script>
+</body>
+</html>
