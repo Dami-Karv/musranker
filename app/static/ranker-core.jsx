@@ -63,14 +63,32 @@ async function searchSpotify(query, mode) {
 
 function useRanker(mode, storageKey) {
   const sessionKey = `${storageKey}__session_v1`;
-  const [items, setItems] = React.useState([]);
-  const [searchIds, setSearchIds] = React.useState(() => new Set());
+  const [items, setItems] = React.useState(() => {
+    try {
+      const session = JSON.parse(localStorage.getItem(sessionKey) || 'null');
+      return session?.mode === mode && Array.isArray(session.items) ? session.items : [];
+    } catch (error) {
+      return [];
+    }
+  });
+  const [searchIds, setSearchIds] = React.useState(() => {
+    try {
+      const session = JSON.parse(localStorage.getItem(sessionKey) || 'null');
+      return new Set(session?.mode === mode && Array.isArray(session.searchIds) ? session.searchIds : []);
+    } catch (error) {
+      return new Set();
+    }
+  });
   const searchIdsRef = React.useRef(searchIds);
   React.useEffect(() => {
     searchIdsRef.current = searchIds;
   }, [searchIds]);
   const [placements, setPlacements] = React.useState(() => {
     try {
+      const session = JSON.parse(localStorage.getItem(sessionKey) || 'null');
+      if (session?.mode === mode && session.placements && typeof session.placements === 'object' && !Array.isArray(session.placements)) {
+        return session.placements;
+      }
       const raw = localStorage.getItem(storageKey);
       return raw ? JSON.parse(raw) : {};
     } catch (error) {
@@ -190,7 +208,7 @@ function useRanker(mode, storageKey) {
 
     const nextItems = Array.isArray(parsed?.items) ? parsed.items : null;
     const nextPlacements = parsed?.placements && typeof parsed.placements === 'object' ? parsed.placements : null;
-    if (!nextItems || !nextPlacements) {
+    if (!nextItems || !nextPlacements || Array.isArray(nextPlacements) || (parsed.mode && parsed.mode !== mode) || nextItems.some((item) => !item || typeof item.id !== 'string' || typeof item.name !== 'string')) {
       throw new Error('That JSON does not look like a MusicRanker export.');
     }
 
